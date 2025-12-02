@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Domain.Entities.EJuguetes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+
+<form method="get" asp-action="Index" class="mb-3">
+    <div class="input-group">
+        <input type="text"
+               name="searchString"
+               value="@ViewData["CurrentFilter"]"
+               class="form-control"
+               placeholder="Buscar por Nombre, Categoría o Tipo" />
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().ID_Juguete)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Categoria)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Tipo)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Precio)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Stock)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Edad)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Descripcion)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ID_Juguete)</td>
+                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Categoria)</td>
+                <td>@Html.DisplayFor(modelItem => item.Tipo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Precio)</td>
+                <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                <td>@Html.DisplayFor(modelItem => item.Edad)</td>
+                <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Key_Juguetes">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Key_Juguetes">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Key_Juguetes">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
